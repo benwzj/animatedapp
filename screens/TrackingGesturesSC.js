@@ -3,6 +3,7 @@ import {
   SafeAreaView,
   ScrollView,
   Text,
+  Button,
   StyleSheet,
   View,
   ImageBackground,
@@ -19,7 +20,7 @@ const images = ['https://images.unsplash.com/photo-1597263882014-93d07afa273f?ix
               'https://images.unsplash.com/photo-1597256122603-a73052ef2f0e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
               'https://images.unsplash.com/photo-1597226144169-5748e0f0e706?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'
               ]
-const TrackingGesturesSC = () => {
+const TrackingGesturesSC = ({navigation}) => {
   const scrollX = useRef (new Animated.Value(0)).current;
 
   const { width: windowWidth } = useWindowDimensions();
@@ -50,11 +51,11 @@ const TrackingGesturesSC = () => {
                 key={imageIndex}
               >
                 <ImageBackground source={{ uri: image }} style={styles.card}>
-                  <View style={styles.textContainer}>
+                  {/* <View style={styles.textContainer}>
                     <Text style={styles.infoText}>
                       {"Image - " + imageIndex}
                     </Text>
-                  </View>
+                  </View> */}
                 </ImageBackground>
               </View>
             );
@@ -79,6 +80,10 @@ const TrackingGesturesSC = () => {
             );
           })}
         </View>
+      <Button
+        title= "Opaciey Screen"
+        onPress={() => navigation.push('Opacity')}
+      />
       </View>
     </SafeAreaView>
   );
