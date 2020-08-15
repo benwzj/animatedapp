@@ -5,6 +5,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 import TrackingGesturesSC from './screens/TrackingGesturesSC'
 import OpacitySC from './screens/OpacitySC'
 import BallSC from './screens/BallSC'
+import TimingSC from './screens/TimingSC'
+import SpringSC from './screens/SpringSC'
+import ParallelSC from './screens/ParallelSC'
+import SequenceSC from './screens/SequenceSC'
+import StaggerSC from './screens/StaggerSC'
 
 const Stack = createStackNavigator();
 
@@ -13,6 +18,26 @@ const AppNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen 
+          name="Stagger" 
+          component={StaggerSC} 
+        />
+        <Stack.Screen 
+          name="Sequence" 
+          component={SequenceSC} 
+        />
+        <Stack.Screen 
+          name="Parallel" 
+          component={ParallelSC} 
+        />
+        <Stack.Screen 
+          name="Spring" 
+          component={SpringSC} 
+        />
+        <Stack.Screen 
+          name="Timing" 
+          component={TimingSC} 
+        />
         <Stack.Screen 
           name="TrackingGestures" 
           component={TrackingGesturesSC} 

@@ -47,7 +47,7 @@ const TrackingGesturesSC = ({navigation}) => {
           {images.map((image, imageIndex) => {
             return (
               <View
-                style={{ width: windowWidth, height: 250 }}
+                style={{ width: windowWidth, height: 450 }}
                 key={imageIndex}
               >
                 <ImageBackground source={{ uri: image }} style={styles.card}>
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   scrollContainer: {
-    height: 300,
+    height: 500,
     alignItems: "center",
     justifyContent: "center"
   },
