@@ -10,6 +10,8 @@ import SpringSC from './screens/SpringSC'
 import ParallelSC from './screens/ParallelSC'
 import SequenceSC from './screens/SequenceSC'
 import StaggerSC from './screens/StaggerSC'
+import IndexSC from './screens/IndexSC'
+import DeckSC from './screens/DeckSC'
 
 const Stack = createStackNavigator();
 
@@ -18,6 +20,14 @@ const AppNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen 
+          name="Index" 
+          component={IndexSC} 
+        />
+        <Stack.Screen 
+          name="Deck" 
+          component={DeckSC} 
+        />
         <Stack.Screen 
           name="Stagger" 
           component={StaggerSC} 

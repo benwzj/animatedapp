@@ -1,4 +1,4 @@
-import React, {useRef}  from 'react'
+import React  from 'react'
 import {
   StyleSheet,
   View,
@@ -17,6 +17,9 @@ const SequenceSC = () => {
     animatedValue[value] = new Animated.Value(0)
   })
   const SequenceIt = () =>{
+    arr.forEach((value) => {
+      animatedValue[value].setValue (0)
+    })
     const animations = arr.map((item) => {
       return Animated.timing(
         animatedValue[item],

@@ -17,6 +17,9 @@ const StaggerSC = () => {
     animatedValue[value] = new Animated.Value(0)
   })
   const StaggerIt = () =>{
+    arr.forEach((value) => {
+      animatedValue[value].setValue (0)
+    })
     const animations = arr.map((item) => {
       return Animated.timing(
         animatedValue[item],
@@ -30,18 +33,6 @@ const StaggerSC = () => {
     Animated.stagger(10, animations).start()
   }
 
-  const animations = arr.map((a, i) => {
-    return <Animated.View 
-      key={i} 
-      style={{opacity: animatedValue[a], 
-        height: 20, 
-        width: 20, 
-        backgroundColor: 'red', 
-        marginLeft: 3, 
-        marginTop: 3}} 
-    />
-  })
-
   return (
     <View style={styles.container}>
       <View style={styles.button} >
@@ -50,7 +41,16 @@ const StaggerSC = () => {
           title='Stagger it' 
         />
       </View>
-      {animations}
+      {arr.map((a, i) => {
+        return <Animated.View 
+          key={i} 
+          style={{opacity: animatedValue[a], 
+            height: 20, 
+            width: 20, 
+            backgroundColor: 'red', 
+            marginLeft: 3, 
+            marginTop: 3}}/>
+      })}
     </View>
   )
 }
