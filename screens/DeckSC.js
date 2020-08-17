@@ -32,11 +32,33 @@ const DeckSC = () => {
       </Card>
     ) 
   }
+  const onSwipeLeft = () =>{
+
+  }
+  const onSwipeRight = () =>{
+
+  }
+  const renderNoMoreCard = () =>{
+    return (
+      <Card title="All Done!">
+        <Text style={{ marginBottom: 10 }}>
+          There's no more content here!
+        </Text>
+        <Button
+          backgroundColor="#03A9F4"
+          title="Get more!"
+        />
+      </Card>
+    );
+  }
   return (
     <View style={styles.container}>
       <Deck 
         data = {DATA}
         renderCard = {renderCard}
+        onSwipeRight = {onSwipeRight}
+        onSwipeLeft = {onSwipeLeft}
+        renderNoMoreCard = {renderNoMoreCard}
       />
     </View>
   );
