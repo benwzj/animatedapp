@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { View, Button, Animated } from 'react-native';
+import { View, Button, Animated, Text } from 'react-native';
 
 class BallSC extends Component {
   constructor (props) {
     super(props);
     this.position = new Animated.ValueXY(0, 0);
-
+    this.state = {valueXY: null};
   }
   startMove = () => {
     Animated.spring(this.position, {
@@ -13,6 +13,9 @@ class BallSC extends Component {
       useNativeDriver: false
       
     }).start();
+  }
+  getXY = () =>{
+    this.setState ({valueXY: JSON.stringify( this.position.getLayout())})
   }
 
   render() {
@@ -22,6 +25,8 @@ class BallSC extends Component {
           <View style={styles.ball} />
         </Animated.View>
         <Button title='start' onPress={this.startMove} />
+        <Button title='get vauleXY' onPress={this.getXY} />
+        <Text>{this.state.valueXY}</Text>
       </View>
     );
   }

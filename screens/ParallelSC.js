@@ -39,7 +39,7 @@ const ParallelSC = () => {
   }
   const scaleText = animatedValue1.interpolate({
     inputRange: [0, 1],
-    outputRange: [0.5, 2]
+    outputRange: [0.5, 4]
   })
   const spinText = animatedValue2.interpolate({
     inputRange: [0, 1],
@@ -54,9 +54,15 @@ const ParallelSC = () => {
       <Animated.View style={{ transform: [{scale: scaleText}] }}>
         <Text>Welcome</Text>
       </Animated.View>
-      <Animated.View style={{ marginTop: 20, transform: [{rotate: spinText}] }}>
-        <Text style={{fontSize: 20}}>to the App!</Text>
+      <Animated.View style={{ marginTop: 40, transform: [{rotate: spinText}] }}>
+        <Text style={{fontSize: 20}}>Animated.View plus Text!</Text>
       </Animated.View>
+      <View style={{ marginTop: 40 }}>
+        <Animated.Text 
+          style={{fontSize: 20, color:'green',transform: [{rotate: spinText}]}}>
+          Animated.Text!
+        </Animated.Text>
+      </View>
       <Animated.View style={{top: introButton, position: 'absolute'}}>
         <TouchableHighlight style={styles.button}>
           <Text style={{color: 'black', fontSize: 20}}>My dear friends!</Text>

@@ -56,8 +56,9 @@ const Deck = (props) => {
   }
   const completeSwipe = (direction) =>{
     LayoutAnimation.configureNext (LayoutAnimation.Presets.spring)
+    direction === 'right' ? 
+      onSwipeRight (currentItemIndex) : onSwipeLeft (currentItemIndex)
     setCurrentItemIndex (index => index+1)
-    direction === 'right'? onSwipeRight(): onSwipeLeft()
   }
   const getCardStyle = () =>{
     const rotate = position.x.interpolate({

@@ -3,16 +3,17 @@ import { View, Text } from 'react-native'
 import { Card, Button } from 'react-native-elements'
 
 import Deck from '../components/Deck'
+import AHScrollView from '../components/AHScrollView'
 
 const DATA = [
-  { id: 1, text: 'Card #1', uri: 'http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-04.jpg' },
+  { id: 1, text: 'Card #1', uri: 'https://images.unsplash.com/photo-1597263882014-93d07afa273f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60' },
   { id: 2, text: 'Card #2', uri: 'http://www.fluxdigital.co/wp-content/uploads/2015/04/Unsplash.jpg' },
-  { id: 3, text: 'Card #3', uri: 'http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-09.jpg' },
-  { id: 4, text: 'Card #4', uri: 'http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-01.jpg' },
-  { id: 5, text: 'Card #5', uri: 'http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-04.jpg' },
+  { id: 3, text: 'Card #3', uri: 'https://images.unsplash.com/photo-1597116635010-8b65f0dce76c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60' },
+  { id: 4, text: 'Card #4', uri: 'https://images.unsplash.com/photo-1597025459688-90cfbe52f8e1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60' },
+  { id: 5, text: 'Card #5', uri: 'https://images.unsplash.com/photo-1597025144616-6ac1d8508e7e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60' },
   { id: 6, text: 'Card #6', uri: 'http://www.fluxdigital.co/wp-content/uploads/2015/04/Unsplash.jpg' },
-  { id: 7, text: 'Card #7', uri: 'http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-09.jpg' },
-  { id: 8, text: 'Card #8', uri: 'http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-01.jpg' },
+  { id: 7, text: 'Card #7', uri: 'https://images.unsplash.com/photo-1597256122603-a73052ef2f0e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60' },
+  { id: 8, text: 'Card #8', uri: 'https://images.unsplash.com/photo-1597226144169-5748e0f0e706?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60' },
 ]
 
 const DeckSC = () => {
@@ -32,11 +33,17 @@ const DeckSC = () => {
       </Card>
     ) 
   }
-  const onSwipeLeft = () =>{
-
+  const swipeLeftHandler = (index) =>{
+    console.log( index )
   }
-  const onSwipeRight = () =>{
 
+  const wrapperFuncArgu = { currIndex: 0 }
+  const swipeRightHandlerWrapper = (argu) =>{
+    return (index) => swipeRightHandler (index,argu)
+  }
+  const swipeRightHandler = (index, argu) => {
+    argu.currIndex = index
+    console.log( 'this is swipe right!',index , argu)
   }
   const renderNoMoreCard = () =>{
     return (
@@ -53,13 +60,18 @@ const DeckSC = () => {
   }
   return (
     <View style={styles.container}>
-      <Deck 
-        data = {DATA}
-        renderCard = {renderCard}
-        onSwipeRight = {onSwipeRight}
-        onSwipeLeft = {onSwipeLeft}
-        renderNoMoreCard = {renderNoMoreCard}
-      />
+      <View style={styles.DeckContainer}>
+        <Deck 
+          data = {DATA}
+          renderCard = {renderCard}
+          onSwipeRight = {swipeRightHandlerWrapper(wrapperFuncArgu)}
+          onSwipeLeft = {swipeLeftHandler}
+          renderNoMoreCard = {renderNoMoreCard}
+        />
+      </View>
+      <View style={styles.ScrollContainer}>
+        <AHScrollView />
+      </View>
     </View>
   );
 }
@@ -67,6 +79,13 @@ const DeckSC = () => {
 const styles = {
   container: {
     flex: 1,
+    justifyContent: 'flex-start'
+  },
+  DeckContainer: {
+    height: 400
+  },
+  ScrollContainer: {
+    height: 400
   }
 };
 
