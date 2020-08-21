@@ -12,6 +12,7 @@ import SequenceSC from './screens/SequenceSC'
 import StaggerSC from './screens/StaggerSC'
 import IndexSC from './screens/IndexSC'
 import DeckSC from './screens/DeckSC'
+import AHScrollViewSC from './screens/AHScrollViewSC'
 
 const Stack = createStackNavigator();
 
@@ -27,6 +28,10 @@ const AppNavigator = () => {
         <Stack.Screen 
           name="Deck" 
           component={DeckSC} 
+        />
+        <Stack.Screen 
+          name="AHScrollView" 
+          component={AHScrollViewSC} 
         />
         <Stack.Screen 
           name="Stagger" 

@@ -40,6 +40,10 @@ const IndexSC = ({navigation}) => {
         title= "Deck Screen"
         onPress={() => navigation.push('Deck')}
       />
+      <Button
+        title= "AHScrollView Screen"
+        onPress={() => navigation.push('AHScrollView')}
+      />
     </View>
   );
 }

@@ -85,7 +85,7 @@ const styles = {
     height: 400
   },
   ScrollContainer: {
-    height: 400
+    height: 500
   }
 };
 
