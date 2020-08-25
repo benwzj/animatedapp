@@ -13,6 +13,7 @@ import StaggerSC from './screens/StaggerSC'
 import IndexSC from './screens/IndexSC'
 import DeckSC from './screens/DeckSC'
 import AHScrollViewSC from './screens/AHScrollViewSC'
+import ReanimatedSC from './screens/ReanimatedSC'
 
 const Stack = createStackNavigator();
 
@@ -24,6 +25,10 @@ const AppNavigator = () => {
         <Stack.Screen 
           name="Index" 
           component={IndexSC} 
+        />
+        <Stack.Screen 
+          name="Reanimated" 
+          component={ReanimatedSC} 
         />
         <Stack.Screen 
           name="Deck" 

@@ -28,17 +28,13 @@ const OpacitySC = ({navigation}) => {
     <SafeAreaView style={styles.container}>
     <View >
       <Animated.View
-        // style={[
-        //   styles.fadingContainer,
-        //   {
-        //     //backgroundColor: fadeAnim
-        //     opacity: fadeAnim // Bind opacity to animated value
-        //   }
-        // ]}
-        style = {{
-          ... styles.fadingContainer,
-          opacity : fadeAnim
-        }}
+        style={[
+          styles.fadingContainer,
+          {
+            //backgroundColor: fadeAnim
+            opacity: fadeAnim // Bind opacity to animated value
+          }
+        ]}
       >
         <Text style={styles.fadingText}>Fading View!</Text>
       </Animated.View>

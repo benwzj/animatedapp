@@ -2,21 +2,19 @@ import React from 'react'
 import { View, Text } from 'react-native'
 
 import AHScrollView from '../components/AHScrollView'
-
+import CInput from '../components/CInput';
 
 const AHScrollViewSC = () => {
-  const getItemColor =(numberOfItem) => {
-    return {
-      backgroundColor: numberOfItem%2 === 0 ? '#b1b1c1' : '#d1d1d8'
-    }
-  }
   const fakeScrollItems = () => {
     const fakeData = []
     for ( let i=0; i<20; i++ ){
       fakeData.push (
         <View 
           key = {i} 
-          style = {[getItemColor(i), styles.itemContainer]}
+          style = {[
+            {backgroundColor: i%2 === 0 ? '#b1b1c1' : '#d1d1d8'}, 
+            styles.itemContainer
+          ]}
         >
           <Text style={styles.item}>{'Item #' + i}</Text>
         </View>
@@ -26,9 +24,23 @@ const AHScrollViewSC = () => {
   }
   return (
     <View style={styles.container}>
-      <AHScrollView>
-        {fakeScrollItems()}
-      </AHScrollView>
+      <View style={{height:'90%'}}>
+        <AHScrollView >
+          {fakeScrollItems()}
+          <CInput 
+            label = 'Price'
+            invalidWhenEmpty
+          />
+          <CInput 
+            label = 'Name'
+            invalidWhenEmpty
+          />
+          <CInput 
+            label = 'Title'
+            invalidWhenEmpty
+          />
+        </AHScrollView>
+      </View>
       <View style={{height:100, backgroundColor: 'green'}}>
       </View>
     </View>

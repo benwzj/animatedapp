@@ -44,6 +44,10 @@ const IndexSC = ({navigation}) => {
         title= "AHScrollView Screen"
         onPress={() => navigation.push('AHScrollView')}
       />
+      <Button
+        title= "Renaimated Screen"
+        onPress={() => navigation.push('Reanimated')}
+      />
     </View>
   );
 }

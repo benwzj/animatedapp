@@ -9,20 +9,11 @@ import {
   StyleSheet } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
   
-const SCREEN_WIDTH = Dimensions.get('window').width
+//const SCREEN_WIDTH = Dimensions.get('window').width
 const SCROLL_THRESHOLD = 200
 
 const AHScrollView = (props) => {
   const scrollY = new Animated.Value (0)
-  const pan = PanResponder.create ({
-    onStartShouldSetPanResponder: () => true,
-    onPanResponderMove: (event, gesture) =>{
-      scrollY.setValue (gesture.dy)
-    },
-    onPanResponderRelease: () =>{
-      resetPosition ()
-    }
-  })
   const resetPosition = () =>{
     Animated.spring ( scrollY, {
       toValue: 0,
@@ -85,9 +76,9 @@ const AHScrollView = (props) => {
     return {
       zIndex: 2,
       height: standardRange.interpolate({
-            inputRange: [0, 1],
-            outputRange: [200, 100],
-          })
+        inputRange: [0, 1],
+        outputRange: [200, 100],
+      })
     }
   }
   const animatedBackground = () =>{
@@ -116,29 +107,29 @@ const AHScrollView = (props) => {
   }
   const getScrollStyle = () =>{
     return {
+      zIndex: 1,
       transform: [{
         translateY: standardRange.interpolate({
-            inputRange: [0, 1],
-            outputRange: [0, -200],
-          })
-        }]
+          inputRange: [0, 1],
+          outputRange: [0, -200],
+        })
+      }]
     }
   }
   return (
     <View style={styles.container}>
-      <View 
+      {/* <View 
         style = {styles.headerContainer} 
-        {...pan.panHandlers}
-      >
+      > */}
         {animatedBackground ()}
         {animatedText ()}
         {animatedImage ()}
-      </View>
+      {/* </View> */}
       <Animated.View 
         style = {[styles.scrollContainer, getScrollStyle()]}
       >
         <ScrollView 
-          style = {[styles.scroll]}
+          style = {styles.scroll}
           onScroll = {({nativeEvent}) => {
             if ( nativeEvent.contentOffset.y > SCROLL_THRESHOLD ){
               scrollY.setValue (SCROLL_THRESHOLD)
@@ -148,10 +139,10 @@ const AHScrollView = (props) => {
               }else{ 
                 scrollY.setValue ( nativeEvent.contentOffset.y )
               }
-            }
+            } 
           }}
           scrollEventThrottle = {10}
-          onLayout = {(event)=> {console.log(event)}}
+          //onLayout = {(event)=> {console.log(event)}}
         >
           { props.children }
         </ScrollView>
@@ -164,13 +155,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
-    height: '100%'
+    height: '100%',
+    alignItems: 'center'
   },
   headerContainer: {
     alignItems: 'center',
     width: '100%',
     height: 200,
-    zIndex: 2,
+    //zIndex: 2,
   },
   headerBackground: {  
     position: 'absolute',     
@@ -187,8 +179,8 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: 'pink', // for test
-    zIndex: 1,
+    //backgroundColor: 'pink', // for test
+    
   },
   scroll: {
     height: '100%',

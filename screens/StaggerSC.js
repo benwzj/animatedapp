@@ -9,7 +9,7 @@ import {
 
 const StaggerSC = () => {
   const arr = []
-  for (var i = 0; i < 400; i++) {
+  for (var i = 0; i < 594; i++) {
     arr.push(i)
   }
   const animatedValue = []
