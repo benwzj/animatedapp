@@ -4,7 +4,6 @@ import {
   View,
   Text,
   Animated,
-  PanResponder,
   Dimensions, 
   StyleSheet } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
@@ -27,71 +26,51 @@ const AHScrollView = (props) => {
     extrapolate: 'clamp',
   })
 
-  const getImgStyle = () =>{
-    return {
-      zIndex: 2,
-      transform: [
-        { translateY: standardRange.interpolate({
-          inputRange: [0, 1],
-          outputRange: [0, -80],
-          })
-        },{
-          translateX: standardRange.interpolate({
-            inputRange: [0, 1],
-            outputRange: [0, -150],
-          })
-        },{
-          scale: standardRange.interpolate({
-            inputRange: [0, 1],
-            outputRange: [1, 0.3],
-          })
-        }
-      ]
-    }
-  }
-
-  const getTextStyle = () =>{
-    return {
-      zIndex: 2,
-      transform: [
-        { translateY: standardRange.interpolate({
-            inputRange: [0, 1],
-            outputRange: [0, 40],
-          })
-        },{
-          translateX: standardRange.interpolate({
-            inputRange: [0, 1],
-            outputRange: [0, -100],
-          })
-        },{
-          scale: standardRange.interpolate({
-            inputRange: [0, 1],
-            outputRange: [1, 0.5],
-          })
-        }
-      ]
-    }
-  }  
-  const getBackgroundStyle = () =>{
-    return {
-      zIndex: 2,
-      height: standardRange.interpolate({
-        inputRange: [0, 1],
-        outputRange: [200, 100],
-      })
-    }
-  }
   const animatedBackground = () =>{
     return (
       <Animated.View 
-        style = {[styles.headerBackground, getBackgroundStyle()]}
+        style = {[
+          styles.headerBackground, 
+          {
+            zIndex: 2,
+            height: standardRange.interpolate({
+              inputRange: [0, 1],
+              outputRange: [200, 100]})
+          },
+        ]}
       />
     )  
   } 
   const animatedText = () =>{
     return (
       <Animated.Text 
-        style = {[{fontSize:40},getTextStyle()]}
+        style = {[
+          {fontSize:40},
+          {
+            zIndex: 2,
+            opacity: standardRange.interpolate({
+              inputRange: [0,0.9,1],
+              outputRange: [1,0,1]
+            }),
+            transform: [
+              { translateY: standardRange.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [0, 40],
+                })
+              },{
+                translateX: standardRange.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [0, -100],
+                })
+              },{
+                scale: standardRange.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [1, 0.5],
+                })
+              }
+            ]
+          }
+        ]}
       >
         This is Animated Text
       </Animated.Text>
@@ -100,7 +79,26 @@ const AHScrollView = (props) => {
   const animatedImage = () =>{
     return (
       <Animated.Image 
-        style = {getImgStyle()}
+        style = {{
+          zIndex: 2,
+          transform: [
+            { translateY: standardRange.interpolate({
+              inputRange: [0, 1],
+              outputRange: [0, -80],
+              })
+            },{
+              translateX: standardRange.interpolate({
+                inputRange: [0, 1],
+                outputRange: [0, -170],
+              })
+            },{
+              scale: standardRange.interpolate({
+                inputRange: [0, 1],
+                outputRange: [1, 0.3],
+              })
+            }
+          ]
+        }}
         source = {require('../img/dog.png')} 
       />
     )  

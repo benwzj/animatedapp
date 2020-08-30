@@ -1,36 +1,49 @@
 import React from 'react'
 import {
-  StyleSheet,
-  View,
-  Button,
-  Animated,
-  Dimensions
-} from 'react-native'
+  StyleSheet,  View,  Button,  Animated,
+  Dimensions } from 'react-native'
+import { useFocusEffect } from '@react-navigation/native'
 
 const StaggerSC = () => {
+  useFocusEffect(
+    React.useCallback(() => {
+      return () => { 
+        Animated.stagger(20, staggerAnimations).stop()
+      }
+    }, [Animated,staggerAnimations])
+  );
   const arr = []
-  for (var i = 0; i < 594; i++) {
+  for (var i = 0; i < 450; i++) {
     arr.push(i)
   }
   const animatedValue = []
-  arr.forEach((value) => {
+  arr.forEach ((value) => {
     animatedValue[value] = new Animated.Value(0)
   })
+  const staggerAnimations = arr.map((item) => {
+    return Animated.timing(
+      animatedValue[item],
+      {
+        toValue: 1,
+        duration: 4000,
+        useNativeDriver: false
+      }
+    )
+  })
+
+  let staggerHandler = null
   const StaggerIt = () =>{
     arr.forEach((value) => {
       animatedValue[value].setValue (0)
     })
-    const animations = arr.map((item) => {
-      return Animated.timing(
-        animatedValue[item],
-        {
-          toValue: 1,
-          duration: 4000,
-          useNativeDriver: false
-        }
-      )
-    })
-    Animated.stagger(10, animations).start()
+    staggerHandler = Animated.stagger(20, staggerAnimations)
+    staggerHandler.start();
+  }
+  const StopIt = () =>{
+    // arr.forEach((value) => {
+    //   animatedValue[value].stopAnimation()
+    // })
+    staggerHandler && staggerHandler.stop()
   }
 
   return (
@@ -39,6 +52,10 @@ const StaggerSC = () => {
         <Button 
           onPress={StaggerIt} 
           title='Stagger it' 
+        />
+        <Button 
+          onPress={()=>StopIt()} 
+          title='Stop it' 
         />
       </View>
       {arr.map((a, i) => {
@@ -62,6 +79,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap'
   },
   button: {
+    flexDirection: 'row',
     height: 40,
     width: Dimensions.get('window').width,
     alignItems: 'center'

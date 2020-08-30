@@ -21,7 +21,8 @@ if (
 }
 
 const Deck = (props) => {
-  const {data, renderCard, onSwipeRight, onSwipeLeft,renderNoMoreCard} = props;
+  const {data, renderCard, onSwipeRight, 
+         onSwipeLeft, renderNoMoreCard} = props;
   const [currentItemIndex, setCurrentItemIndex] = useState (0)
   const position = new Animated.ValueXY(0,0)
   const pan = PanResponder.create ({
@@ -72,7 +73,11 @@ const Deck = (props) => {
   }
   const renderCards = () =>{
     if ( currentItemIndex >= data.length ) {
-        return renderNoMoreCard()
+      if ( renderNoMoreCard ){
+        return renderNoMoreCard ()
+      }else {
+        setCurrentItemIndex (0)
+      }
     }
     return data.map ( (item, index) => {
       if ( index < currentItemIndex ) { return null }

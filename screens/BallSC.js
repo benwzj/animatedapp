@@ -5,7 +5,7 @@ class BallSC extends Component {
   constructor (props) {
     super(props);
     this.position = new Animated.ValueXY(0,0);
-    this.state = {valueXY: null};
+    this.state = {displayXY: null};
   }
   startSpring = () => {
     Animated.spring(this.position, {
@@ -25,7 +25,7 @@ class BallSC extends Component {
   }
 
   getXY = () =>{
-    this.setState ({valueXY: JSON.stringify( this.position.getLayout())})
+    this.setState ({displayXY: JSON.stringify( this.position.getLayout())})
   }
 
   render() {
@@ -37,7 +37,7 @@ class BallSC extends Component {
         <Button title='start Spring' onPress={this.startSpring} />
         <Button title='start Timing' onPress={this.startTiming} />
         <Button title='get vauleXY' onPress={this.getXY} />
-        <Text>{this.state.valueXY}</Text>
+        <Text>{this.state.displayXY}</Text>
       </View>
     );
   }

@@ -20,8 +20,9 @@ const SequenceSC = () => {
   arr.forEach((value) => {
     animatedValue[value] = new Animated.Value(1)
   })
+  let sequenceHandler = null
   const SequenceIt = () =>{
-    const animatedStringArr = animatedValue.map ((value)=>{
+    const animatedSpringArr = animatedValue.map ((value)=>{
       return Animated.spring (value,{
         toValue: 0,
         friction: 1,
@@ -39,7 +40,7 @@ const SequenceSC = () => {
           animatedValue[index],
           {
             toValue: 1,
-            duration: 1,
+            duration: 50,
             useNativeDriver: false
           }
         )
@@ -48,8 +49,12 @@ const SequenceSC = () => {
     // Animated.parallel(animatedStringArr).start(
     //   ()=> Animated.sequence(animatedTimingArr).start()
     // )
-    const animatedArr = [Animated.parallel(animatedStringArr), ...animatedTimingArr];
-    Animated.sequence (animatedArr).start()
+    const animatedArr = [Animated.parallel(animatedSpringArr), ...animatedTimingArr];
+    sequenceHandler = Animated.sequence (animatedArr)
+    sequenceHandler.start()
+  }
+  const stopSqeuence = () =>{
+    sequenceHandler && sequenceHandler.stop();
   }
 
   const animatedViewArr = arr.map((a, i) => {
@@ -73,6 +78,10 @@ const SequenceSC = () => {
           onPress={SequenceIt} 
           title='Sequence it' 
         />
+        <Button 
+          onPress={stopSqeuence} 
+          title='Stop it' 
+        />
       </View>
       <View style={styles.sequenceArea}>
         {animatedViewArr}
@@ -94,6 +103,7 @@ const styles = StyleSheet.create({
     height: 400
   },
   button: {
+    flexDirection: 'row',
     height: 40,
     width: Dimensions.get('window').width,
     alignItems: 'center'

@@ -79,10 +79,6 @@ const TrackingGesturesSC = ({navigation}) => {
             );
           })}
         </View>
-      <Button
-        title = "Opaciey Screen"
-        onPress = {() => navigation.push('Opacity')}
-      />
       </View>
     </SafeAreaView>
   );

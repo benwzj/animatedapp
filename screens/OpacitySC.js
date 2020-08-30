@@ -1,25 +1,23 @@
 import React from "react";
-import { Animated, Text, View, StyleSheet, Button, ScrollView,
-         SafeAreaView } from "react-native";
+import { Animated, Text, View, StyleSheet, Button,
+         SafeAreaView, Easing } from "react-native";
 
-const OpacitySC = ({navigation}) => {
-  // fadeAnim will be used as the value for opacity. Initial Value: 0
+const OpacitySC = () => {
   const fadeAnim = new Animated.Value(0)
 
   const fadeIn = () => {
-    // Will change fadeAnim value to 1 in 5 seconds
     Animated.timing(fadeAnim, {
       toValue: 1,
-      duration: 5000,
+      duration: 3000,
+      timing: Easing.bounce,
       useNativeDriver: false 
     }).start();
   };
 
   const fadeOut = () => {
-    // Will change fadeAnim value to 0 in 5 seconds
     Animated.timing(fadeAnim, {
       toValue: 0,
-      duration: 5000,
+      duration: 3000,
       useNativeDriver: false 
     }).start();
   };
@@ -31,8 +29,7 @@ const OpacitySC = ({navigation}) => {
         style={[
           styles.fadingContainer,
           {
-            //backgroundColor: fadeAnim
-            opacity: fadeAnim // Bind opacity to animated value
+            opacity: fadeAnim
           }
         ]}
       >
@@ -42,7 +39,6 @@ const OpacitySC = ({navigation}) => {
         <Button title="Fade In" onPress={fadeIn} />
         <Button title="Fade Out" onPress={fadeOut} />
       </View>
-      <Button title="Next Page" onPress={() => navigation.push('Ball')} />
     </View>
     </SafeAreaView>
   );
