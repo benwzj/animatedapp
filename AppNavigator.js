@@ -14,9 +14,12 @@ import SequenceSC from './screens/SequenceSC'
 import StaggerSC from './screens/StaggerSC'
 import DeckSC from './screens/DeckSC'
 import AHScrollViewSC from './screens/AHScrollViewSC'
+import CHScrollViewSC from './screens/CHScrollViewSC'
 import DraggableReanimatedSC from './screens/DraggableReanimatedSC'
 import DraggableSC from './screens/DraggableSC'
 import DecaySC from './screens/DecaySC'
+import RowActionsSC from './screens/RowActionsSC'
+import RowSwipeableSC from './screens/RowSwipeableSC'
 
 const SCREENS = [
   {
@@ -60,6 +63,10 @@ const SCREENS = [
     name: 'AHScrollViewSC',
     title: 'AHScrollViewSC'
   },{
+    component: CHScrollViewSC,
+    name: 'CHScrollViewSC',
+    title: 'CHScrollViewSC'
+  },{
     component: DraggableReanimatedSC,
     name: 'DraggableReanimatedSC',
     title: 'DraggableReanimatedSC'
@@ -71,6 +78,14 @@ const SCREENS = [
     component: DecaySC,
     name: 'DecaySC',
     title: 'DecaySC'
+  },{
+    component: RowActionsSC,
+    name: 'RowActionsSC',
+    title: 'RowActionsSC'
+  },{
+    component: RowSwipeableSC,
+    name: 'RowSwipeableSC',
+    title: 'RowSwipeableSC'
   }
 ]
 
@@ -101,7 +116,8 @@ const AppNavigator = () => {
             id = {item.name}
             onPress = {() => navigation.navigate (item.name)}
             onShowUnderlay = {separators.highlight}
-            onHideUnderlay = {separators.unhighlight}>
+            onHideUnderlay = {separators.unhighlight}
+          >
             <View style = {styles.title}>
               <Text style = {styles.titleText}>{ item.title }</Text>
             </View>

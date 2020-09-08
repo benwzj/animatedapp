@@ -1,11 +1,6 @@
-// AnimatedHeader ScrollView
+// Animated Header ScrollView
 import React from 'react'
-import { 
-  View,
-  Text,
-  Animated,
-  Dimensions, 
-  StyleSheet } from 'react-native'
+import { View, Animated, Dimensions, StyleSheet } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
   
 //const SCREEN_WIDTH = Dimensions.get('window').width
@@ -83,8 +78,8 @@ const AHScrollView = (props) => {
           zIndex: 2,
           transform: [
             { translateY: standardRange.interpolate({
-              inputRange: [0, 1],
-              outputRange: [0, -80],
+                inputRange: [0, 1],
+                outputRange: [0, -80],
               })
             },{
               translateX: standardRange.interpolate({
@@ -126,7 +121,7 @@ const AHScrollView = (props) => {
       <Animated.View 
         style = {[styles.scrollContainer, getScrollStyle()]}
       >
-        <ScrollView 
+        <Animated.ScrollView 
           style = {styles.scroll}
           onScroll = {({nativeEvent}) => {
             if ( nativeEvent.contentOffset.y > SCROLL_THRESHOLD ){
@@ -143,7 +138,7 @@ const AHScrollView = (props) => {
           //onLayout = {(event)=> {console.log(event)}}
         >
           { props.children }
-        </ScrollView>
+        </Animated.ScrollView>
       </Animated.View>
     </View>
   );

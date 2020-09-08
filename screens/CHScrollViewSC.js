@@ -1,9 +1,9 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 
-import AHScrollView from '../components/AHScrollView'
+import CHScrollView from '../components/CHScrollView'
 
-const AHScrollViewSC = () => {
+const CHScrollViewSC = () => {
   const fakeScrollItems = () => {
     const fakeData = []
     for ( let i=0; i<20; i++ ){
@@ -21,14 +21,20 @@ const AHScrollViewSC = () => {
     }
     return fakeData
   }
+  //// run CPU burner for testing
+  const runCPUburner = () => {
+    const timestamp = Date.now() + 160;
+    while(Date.now() < timestamp) {};
+    requestAnimationFrame(runCPUburner);
+  }
+  runCPUburner();
+
   return (
     <View style={styles.container}>
-      <View style={{height:"100%"}}>
-        <AHScrollView >
+      <View style={{height:'100%'}}>
+        <CHScrollView >
           {fakeScrollItems()}
-        </AHScrollView>
-      </View>
-      <View style={{height:100, backgroundColor: 'green'}}>
+        </CHScrollView>
       </View>
     </View>
   );
@@ -50,4 +56,4 @@ const styles = {
   }
 };
 
-export default AHScrollViewSC
+export default CHScrollViewSC
